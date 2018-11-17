@@ -54,6 +54,13 @@ public class Gun : MonoBehaviour {
         break;
     }
     StateDuration += Time.deltaTime;
+
+    transform.rotation = Quaternion.AngleAxis(
+      AngleBetweenTwoPoints(
+        Camera.main.ScreenToWorldPoint(Input.mousePosition),  
+        transform.position
+      ), Vector3.forward
+    );
 	}
 
   void SwitchState(GunState state) {
@@ -70,5 +77,9 @@ public class Gun : MonoBehaviour {
     var temp = Instantiate(Bullet, BulletTransform.position, BulletTransform.rotation).GetComponent<Bullet>();
     temp.Damage = Damage;
     temp.Speed = BulletSpeed;
+  }
+
+  private float AngleBetweenTwoPoints(Vector2 a, Vector2 b) {
+    return Mathf.Atan2(a.y - b.y, a.x - b.x) * Mathf.Rad2Deg;
   }
 }

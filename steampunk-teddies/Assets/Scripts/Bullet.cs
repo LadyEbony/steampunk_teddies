@@ -23,10 +23,10 @@ public class Bullet : MonoBehaviour {
   }
 
   private void OnCollisionEnter2D(Collision2D collision) {
-    Debug.Log("Detected collision");
-    if (collision.gameObject.layer == EnemyLayerMask) {
+    var layer = collision.gameObject.layer;
+    if (IsInLayerMask(layer, EnemyLayerMask)) {
       // TODO: Do damage
-    } else if (IsInLayerMask(collision.gameObject.layer, EnvironmentLayerMask)) {
+    } else if (IsInLayerMask(layer, EnvironmentLayerMask)) {
       Destroy(gameObject);
     }
 
