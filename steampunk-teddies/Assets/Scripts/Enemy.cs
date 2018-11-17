@@ -42,7 +42,10 @@ public class Enemy : MonoBehaviour {
 						if (Physics2D.Raycast (transform.position, displacement, radius, environmentLayer).collider != null) {
 
 						} else {
-							double fireAngle = Mathf.Atan2(displacement.y, displacement.x);
+							float fireAngle = Mathf.Atan2(displacement.y, displacement.x);
+
+							gun.transform.eulerAngles = new Vector3(0, 0, fireAngle * Mathf.Rad2Deg);
+
 							gun.Fire();
 
 							if(moveOrder != null) {
