@@ -11,6 +11,7 @@ public class Bullet : MonoBehaviour {
   public float DestroyTime;
   public LayerMask EnemyLayerMask;
   public LayerMask EnvironmentLayerMask;
+    public LayerMask playerLayerMask;
 
 	// Use this for initialization
 	void Start () {
