@@ -4,20 +4,26 @@ using UnityEngine;
 
 public class PlayerManager : CharacterManager {
 
-    private void Update() {
-        if (gunInHand != null) { 
-            gunInHand.UpdateProcedure();
-            gunInHand.UpdateRotation();
-        }
-        if (Input.GetMouseButton(0)) {
-            gunInHand.Fire();
-        }
-    }
+  public Bat bat;
 
-    public void SwitchGun(Gun nearbyGun)
-    {
-        Destroy(gunInHand.gameObject);
-        gunInHand = nearbyGun;
-        gunInHand.transform.SetParent(transform);
+  private void Update() {
+    if (gunInHand != null) { 
+      gunInHand.UpdateProcedure();
+      if (Input.GetMouseButton(0))
+        gunInHand.Fire();
     }
+     
+    if (bat != null) { 
+      bat.UpdateProcedure();
+      if (Input.GetKey(KeyCode.F))
+        bat.Attack();
+    }
+  }
+
+  public void SwitchGun(Gun nearbyGun)
+  {
+      Destroy(gunInHand.gameObject);
+      gunInHand = nearbyGun;
+      gunInHand.transform.SetParent(transform);
+  }
 }

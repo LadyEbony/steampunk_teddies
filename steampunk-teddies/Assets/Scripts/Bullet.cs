@@ -19,23 +19,19 @@ public class Bullet : MonoBehaviour {
     Destroy(gameObject, DestroyTime);
 	}
 
-  void SetVelocity() {
+  public void SetVelocity() {
     Rigidbody.velocity = transform.rotation * Vector2.right * Speed;
   }
 
   private void OnTriggerEnter2D(Collider2D collision) {
     var layer = collision.gameObject.layer;
-    if (IsInLayerMask(layer, EnemyLayerMask)) {
+    if (Global.IsInLayerMask(layer, EnemyLayerMask)) {
       // TODO: Do damage
       collision.gameObject.GetComponent<CharacterManager>().TakeDamage(Damage);
 
-    } else if (IsInLayerMask(layer, EnvironmentLayerMask)) {
+    } else if (Global.IsInLayerMask(layer, EnvironmentLayerMask)) {
       Destroy(gameObject);
     }
-  }
-
-  private bool IsInLayerMask(int layer, LayerMask layerMask) {
-    return layerMask == (layerMask | (1 << layer));
   }
 
 }

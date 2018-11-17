@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bar : MonoBehaviour {
+public class Bat : MonoBehaviour {
   public enum BatState { Standby, meleePause }
   [Header("State")]
   public BatState State = BatState.Standby;
@@ -14,7 +14,6 @@ public class Bar : MonoBehaviour {
 
   [Header("Melee Gameobject")]
   public GameObject Melee;
-  public Transform MeleeTransform;
 
 	void Update () {
 		
@@ -36,7 +35,7 @@ public class Bar : MonoBehaviour {
 
   public void Attack() {
     if (State == BatState.Standby) {
-      var temp = Instantiate(Melee, MeleeTransform.position, MeleeTransform.rotation).GetComponent<Bullet>();
+      var temp = Instantiate(Melee, transform.position, transform.rotation).GetComponent<Melee>();
       temp.Damage = Damage;
 
       SwitchState(BatState.meleePause);

@@ -62,8 +62,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1916819759879752}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.21000001, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4093824720375922}
@@ -82,15 +82,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   State: 0
+  equipped: 0
   StateDuration: 0
   Damage: 1
-  Firerate: 0.001
+  Firerate: 0.1
   Reload: 1
   BulletSpeed: 10
-  MagazineSize: 100
-  MagazineCurrent: 100
+  MagazineSize: 10
+  MagazineCurrent: 10
   Bullet: {fileID: 1650053074972646, guid: 398296a94d091e149a93976d5bf4bdad, type: 2}
   BulletTransform: {fileID: 4093824720375922}
+  playerLayerMask:
+    serializedVersion: 2
+    m_Bits: 1024
 --- !u!212 &212367554961412026
 SpriteRenderer:
   m_ObjectHideFlags: 1

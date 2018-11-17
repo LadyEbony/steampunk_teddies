@@ -6,7 +6,7 @@ public class Gun : MonoBehaviour {
   public enum GunState { Standby, FireratePause, ReloadPause }
   [Header("State")]
   public GunState State = GunState.Standby;
-    public bool equipped = false;
+  public bool equipped = false;
   public float StateDuration = 0.0f;
 
   [Header("Gun Stats")]
@@ -21,18 +21,8 @@ public class Gun : MonoBehaviour {
   [Header("Bullet Gameobject")]
   public GameObject Bullet;
   public Transform BulletTransform;
-    public LayerMask playerLayerMask;
+  public LayerMask playerLayerMask;
     
-
-    // Use this for initialization
-    void Start () {
-		
-	}
-	
-	// REMOVE WHEN CHARACTER CONTROLLER IMPLEMENTATION ADDED
-	void Update () {
-    UpdateProcedure();
-	}
 
   public void UpdateProcedure() {
     switch(State) {
@@ -69,15 +59,6 @@ public class Gun : MonoBehaviour {
     }
   }
 
-  public void UpdateRotation() {
-    transform.rotation = Quaternion.AngleAxis(
-      AngleBetweenTwoPoints(
-        Camera.main.ScreenToWorldPoint(Input.mousePosition),  
-        transform.position
-      ), Vector3.forward
-    );
-  }
-
   void SwitchState(GunState state) {
     State = state;
     StateDuration = 0.0f;
@@ -88,30 +69,15 @@ public class Gun : MonoBehaviour {
     StateDuration -= durationDecrease;
   }
 
-  private float AngleBetweenTwoPoints(Vector2 a, Vector2 b) {
-    return Mathf.Atan2(a.y - b.y, a.x - b.x) * Mathf.Rad2Deg;
+  private void OnTriggerStay2D(Collider2D collision) {
+    var layer = collision.gameObject.layer;
+    if (!equipped && Global.IsInLayerMask(layer, playerLayerMask))
+    {
+      if (Input.GetMouseButton(1))
+      {
+        collision.gameObject.GetComponent<PlayerManager>().SwitchGun(this);
+        equipped = true;
+      }
+    }
   }
-
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        var layer = collision.gameObject.layer;
-        Debug.Log("Hello");
-        if (!equipped && IsInLayerMask(layer, playerLayerMask))
-        {
-            
-            Debug.Log("Hellohello");
-            if (Input.GetMouseButton(1))
-            {
-
-                collision.gameObject.GetComponent<PlayerManager>().SwitchGun(this);
-                equipped = true;
-                Debug.Log("Hi");
-            }
-        }
-    }
-
-    private bool IsInLayerMask(int layer, LayerMask layerMask)
-    {
-        return layerMask == (layerMask | (1 << layer));
-    }
 }
