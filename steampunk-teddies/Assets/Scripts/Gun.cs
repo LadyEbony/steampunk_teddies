@@ -50,13 +50,6 @@ public class Gun : MonoBehaviour {
         break;
     }
     StateDuration += Time.deltaTime;
-
-    transform.rotation = Quaternion.AngleAxis(
-      AngleBetweenTwoPoints(
-        Camera.main.ScreenToWorldPoint(Input.mousePosition),  
-        transform.position
-      ), Vector3.forward
-    );
   }
 
   public void Fire() {
@@ -74,7 +67,12 @@ public class Gun : MonoBehaviour {
   }
 
   public void UpdateRotation() {
-
+    transform.rotation = Quaternion.AngleAxis(
+      AngleBetweenTwoPoints(
+        Camera.main.ScreenToWorldPoint(Input.mousePosition),  
+        transform.position
+      ), Vector3.forward
+    );
   }
 
   void SwitchState(GunState state) {
