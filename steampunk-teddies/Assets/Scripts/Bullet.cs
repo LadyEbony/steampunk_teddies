@@ -26,6 +26,8 @@ public class Bullet : MonoBehaviour {
     var layer = collision.gameObject.layer;
     if (IsInLayerMask(layer, EnemyLayerMask)) {
       // TODO: Do damage
+      collision.gameObject.GetComponent<CharacterManager>().TakeDamage(Damage);
+
     } else if (IsInLayerMask(layer, EnvironmentLayerMask)) {
       Destroy(gameObject);
     }
