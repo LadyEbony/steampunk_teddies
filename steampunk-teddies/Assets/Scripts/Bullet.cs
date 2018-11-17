@@ -22,14 +22,13 @@ public class Bullet : MonoBehaviour {
     Rigidbody.velocity = transform.rotation * Vector2.right * Speed;
   }
 
-  private void OnCollisionEnter2D(Collision2D collision) {
+  private void OnTriggerEnter2D(Collider2D collision) {
     var layer = collision.gameObject.layer;
     if (IsInLayerMask(layer, EnemyLayerMask)) {
       // TODO: Do damage
     } else if (IsInLayerMask(layer, EnvironmentLayerMask)) {
       Destroy(gameObject);
     }
-
   }
 
   private bool IsInLayerMask(int layer, LayerMask layerMask) {
