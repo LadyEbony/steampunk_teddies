@@ -26,18 +26,14 @@ public class Gun : MonoBehaviour {
 		
 	}
 	
-	// Update is called once per frame
+	// REMOVE WHEN CHARACTER CONTROLLER IMPLEMENTATION ADDED
 	void Update () {
-		switch(State) {
+    UpdateProcedure();
+	}
+
+  public void UpdateProcedure() {
+    switch(State) {
       case GunState.Standby:
-        if (Input.GetMouseButton(0)) {
-          Fire();
-          MagazineCurrent--;
-          if (MagazineCurrent > 0)
-            SwitchState(GunState.FireratePause);
-          else
-            SwitchState(GunState.ReloadPause);
-        }
         break;
 
       case GunState.FireratePause:
@@ -61,7 +57,25 @@ public class Gun : MonoBehaviour {
         transform.position
       ), Vector3.forward
     );
-	}
+  }
+
+  public void Fire() {
+    if (State == GunState.Standby) {
+      var temp = Instantiate(Bullet, BulletTransform.position, BulletTransform.rotation).GetComponent<Bullet>();
+      temp.Damage = Damage;
+      temp.Speed = BulletSpeed;
+
+      MagazineCurrent--;
+      if (MagazineCurrent > 0)
+        SwitchState(GunState.FireratePause);
+      else
+        SwitchState(GunState.ReloadPause);
+    }
+  }
+
+  public void UpdateRotation() {
+
+  }
 
   void SwitchState(GunState state) {
     State = state;
@@ -71,12 +85,6 @@ public class Gun : MonoBehaviour {
   void SwitchState(GunState state, float durationDecrease) {
     State = state;
     StateDuration -= durationDecrease;
-  }
-
-  private void Fire() {
-    var temp = Instantiate(Bullet, BulletTransform.position, BulletTransform.rotation).GetComponent<Bullet>();
-    temp.Damage = Damage;
-    temp.Speed = BulletSpeed;
   }
 
   private float AngleBetweenTwoPoints(Vector2 a, Vector2 b) {
