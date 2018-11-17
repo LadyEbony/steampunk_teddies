@@ -12,6 +12,7 @@ public class Gun : MonoBehaviour {
   public int Damage = 1;
   public float Firerate = 0.025f;
   public float Reload = 1.0f;
+  public float BulletSpeed = 10.0f;
 
   public int MagazineSize = 4;
   public int MagazineCurrent = 4;
@@ -41,18 +42,25 @@ public class Gun : MonoBehaviour {
 
       case GunState.FireratePause:
         if (StateDuration >= Firerate) {
-          SwitchState(GunState.Standby);
+          SwitchState(GunState.Standby, Firerate);
         }
         break;
 
       case GunState.ReloadPause:
         if (StateDuration >= Reload) {
           MagazineCurrent = MagazineSize;
-          SwitchState(GunState.Standby);
+          SwitchState(GunState.Standby, -Reload);
         }
         break;
     }
     StateDuration += Time.deltaTime;
+
+    transform.rotation = Quaternion.AngleAxis(
+      AngleBetweenTwoPoints(
+        Camera.main.ScreenToWorldPoint(Input.mousePosition),  
+        transform.position
+      ), Vector3.forward
+    );
 	}
 
   void SwitchState(GunState state) {
@@ -60,8 +68,18 @@ public class Gun : MonoBehaviour {
     StateDuration = 0.0f;
   }
 
+  void SwitchState(GunState state, float durationDecrease) {
+    State = state;
+    StateDuration -= durationDecrease;
+  }
+
   private void Fire() {
-    Instantiate(Bullet, BulletTransform.position, BulletTransform.rotation);
-    // TODO: Add bullet damage
+    var temp = Instantiate(Bullet, BulletTransform.position, BulletTransform.rotation).GetComponent<Bullet>();
+    temp.Damage = Damage;
+    temp.Speed = BulletSpeed;
+  }
+
+  private float AngleBetweenTwoPoints(Vector2 a, Vector2 b) {
+    return Mathf.Atan2(a.y - b.y, a.x - b.x) * Mathf.Rad2Deg;
   }
 }
