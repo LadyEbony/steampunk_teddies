@@ -200,7 +200,7 @@ MonoBehaviour:
   Name: Tastes Like Purple!
   Damage: 1
   Firerate: 0.025
-  Reload: 0.25
+  Reload: 0.5
   BulletSpeed: 10
   MagazineSize: 100
   MagazineCurrent: 100
