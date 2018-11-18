@@ -14,6 +14,7 @@ public class CharacterManager : MonoBehaviour {
   protected virtual void StartProcedure() {
     currentHealth = maxhp;
     gunInHand.equipped = true;
+    gunInHand.friendly = this is PlayerManager ? true : false;
   }
 
   public void TakeDamage(int damage) {

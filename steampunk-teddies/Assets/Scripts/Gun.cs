@@ -6,6 +6,7 @@ public class Gun : MonoBehaviour {
   public enum GunState { Standby, FireratePause, ReloadPause }
   [Header("State")]
   public GunState State = GunState.Standby;
+  public bool friendly = false;
   public bool equipped = false;
   public float StateDuration = 0.0f;
 
@@ -17,6 +18,12 @@ public class Gun : MonoBehaviour {
 
   public int MagazineSize = 4;
   public int MagazineCurrent = 4;
+
+  [Header("Audio")]
+  public AudioSource Audio;
+  public AudioClip PickupSound;
+  public AudioClip FireSound;
+  public AudioClip ReloadSound;
 
   [Header("Bullet Gameobject")]
   public GameObject Bullet;
@@ -50,21 +57,24 @@ public class Gun : MonoBehaviour {
   public void Fire() {
     if (State == GunState.Standby) {
       var temp = Instantiate(Bullet, BulletTransform.position, BulletTransform.rotation).GetComponent<Bullet>();
+      temp.friendly = friendly;
       temp.Damage = Damage;
       temp.Speed = BulletSpeed;
+
+      Audio.PlayOneShot(FireSound);
 
       MagazineCurrent--;
       if (MagazineCurrent > 0)
           SwitchState(GunState.FireratePause);
-      else
+      else { 
           SwitchState(GunState.ReloadPause);
-                
-
+      }
     }
   }
 
   public void ReloadGun() {
     var temp = Instantiate(GunPrefab, BulletTransform.position, BulletTransform.rotation).GetComponent<Bullet>();
+    temp.friendly = friendly;
     temp.Damage = Damage;
     temp.Speed = BulletSpeed / 2;
     Destroy(gameObject);

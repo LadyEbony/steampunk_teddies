@@ -29,7 +29,10 @@ public class PlayerManager : CharacterManager {
   {
     if (gunInHand != null)
       Destroy(gunInHand.gameObject);
+
     gunInHand = nearbyGun;
+    gunInHand.friendly = true;
+    gunInHand.Audio.PlayOneShot(gunInHand.PickupSound);
     gunInHand.transform.SetParent(hand);
     gunInHand.transform.localPosition = Vector3.zero;
     gunInHand.transform.localRotation = Quaternion.identity;
