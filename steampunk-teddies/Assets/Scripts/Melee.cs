@@ -6,9 +6,7 @@ public class Melee : MonoBehaviour {
   public int Damage;
 
   public float DestroyTime;
-  public LayerMask EnemyLayerMask;
-  public LayerMask BulletLayerMask;
-
+  
 	// Use this for initialization
 	void Start () {
     Destroy(gameObject, DestroyTime);
@@ -16,11 +14,11 @@ public class Melee : MonoBehaviour {
 
   private void OnTriggerEnter2D(Collider2D collision) {
     var layer = collision.gameObject.layer;
-    if (Global.IsInLayerMask(layer, EnemyLayerMask)) {
+    if (Global.IsInLayerMask(layer, Global.Enemy)) {
       // TODO: Do damage
       collision.gameObject.GetComponent<CharacterManager>().TakeDamage(Damage);
 
-    } else if (Global.IsInLayerMask(layer, BulletLayerMask)) {
+    } else if (Global.IsInLayerMask(layer, Global.Bullet)) {
       var temp = collision.gameObject.GetComponent<Bullet>();
 
       temp.transform.rotation = Quaternion.AngleAxis(

@@ -28,7 +28,6 @@ public class Gun : MonoBehaviour {
   [Header("Bullet Gameobject")]
   public GameObject Bullet;
   public Transform BulletTransform;
-  public LayerMask playerLayerMask;
 
   [Header("Gun Throw Object")]
   public GameObject GunPrefab;
@@ -92,7 +91,7 @@ public class Gun : MonoBehaviour {
 
   private void OnTriggerStay2D(Collider2D collision) {
     var layer = collision.gameObject.layer;
-    if (!equipped && Global.IsInLayerMask(layer, playerLayerMask))
+    if (!equipped && Global.IsInLayerMask(layer, Global.Player))
     {
       if (Input.GetMouseButton(1))
       {
