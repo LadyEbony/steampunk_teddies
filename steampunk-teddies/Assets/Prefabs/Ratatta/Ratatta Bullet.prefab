@@ -95,15 +95,6 @@ MonoBehaviour:
   Dropoff: 0
   friendly: 0
   DestroyTime: 2
-  PlayerLayerMask:
-    serializedVersion: 2
-    m_Bits: 0
-  EnemyLayerMask:
-    serializedVersion: 2
-    m_Bits: 0
-  EnvironmentLayerMask:
-    serializedVersion: 2
-    m_Bits: 8448
 --- !u!212 &212449786650399282
 SpriteRenderer:
   m_ObjectHideFlags: 1
