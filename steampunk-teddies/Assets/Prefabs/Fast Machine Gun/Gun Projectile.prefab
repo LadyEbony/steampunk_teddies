@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 50974467187430580}
   - component: {fileID: 58029221175414168}
   m_Layer: 9
-  m_Name: Gun Bullet
+  m_Name: Gun Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -96,10 +96,10 @@ MonoBehaviour:
   DestroyTime: 2
   PlayerLayerMask:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 0
   EnemyLayerMask:
     serializedVersion: 2
-    m_Bits: 2048
+    m_Bits: 0
   EnvironmentLayerMask:
     serializedVersion: 2
     m_Bits: 8448
@@ -139,7 +139,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 0, g: 0.2381134, b: 1, a: 1}
+  m_Color: {r: 0.9925282, g: 1, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

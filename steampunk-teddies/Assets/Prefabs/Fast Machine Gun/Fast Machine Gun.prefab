@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 58791824075625314}
   - component: {fileID: 82192848682798874}
   m_Layer: 0
-  m_Name: Gun
+  m_Name: Fast Machine Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -64,7 +64,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1916819759879752}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -198,18 +198,21 @@ MonoBehaviour:
   equipped: 0
   StateDuration: 0
   Damage: 1
-  Firerate: 0.1
+  Firerate: 0.05
   Reload: 0.25
   BulletSpeed: 10
-  MagazineSize: 10
-  MagazineCurrent: 10
+  MagazineSize: 20
+  MagazineCurrent: 20
   Audio: {fileID: 82192848682798874}
   PickupSound: {fileID: 8300000, guid: 3f0e62bd2b354624089af8640409bec9, type: 3}
-  FireSound: {fileID: 8300000, guid: 5881a83f6d22df241ba61ac3e465c1fe, type: 3}
+  FireSound: {fileID: 8300000, guid: 06a1234c3b74eb4468780c14dcf4e700, type: 3}
   ReloadSound: {fileID: 8300000, guid: c4501bfa3b7a82349bc98efc033c1b88, type: 3}
-  Bullet: {fileID: 1650053074972646, guid: 398296a94d091e149a93976d5bf4bdad, type: 2}
+  Bullet: {fileID: 1650053074972646, guid: 561e8cc819ba96646908ee17d9555f02, type: 2}
   BulletTransform: {fileID: 4093824720375922}
-  GunPrefab: {fileID: 1650053074972646, guid: 66289fde335cf344bacf491a0ec7dcfd, type: 2}
+  playerLayerMask:
+    serializedVersion: 2
+    m_Bits: 1024
+  GunPrefab: {fileID: 1650053074972646, guid: 1b35b60e882e52c4e87dcb8af504c642, type: 2}
 --- !u!212 &212367554961412026
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -246,7 +249,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.96093774, g: 1, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
