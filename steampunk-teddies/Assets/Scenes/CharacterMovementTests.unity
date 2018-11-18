@@ -251,8 +251,12 @@ MonoBehaviour:
   gravity: 40
   distanceGround: 0.1
   distanceSides: 0.1
-  rb2d: {fileID: 117964353}
-  bc2d: {fileID: 117964352}
+  groundLR:
+    serializedVersion: 2
+    m_Bits: 0
+  wallLR:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!61 &117964352
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -372,6 +376,7 @@ MonoBehaviour:
   maxhp: 3
   currentHealth: 3
   gunInHand: {fileID: 0}
+  state: 0
   hand: {fileID: 1514882296}
   bat: {fileID: 2091428407}
 --- !u!1 &162149010
@@ -721,6 +726,7 @@ MonoBehaviour:
   maxhp: 3
   currentHealth: 3
   gunInHand: {fileID: 1205085153}
+  state: 0
   hand: {fileID: 0}
 --- !u!1001 &562825649
 Prefab:

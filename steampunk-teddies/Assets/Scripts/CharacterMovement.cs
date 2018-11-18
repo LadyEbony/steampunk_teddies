@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(BoxCollider2D))]
 public class CharacterMovement : MonoBehaviour {
 
   [Header("Speed")]
@@ -15,10 +17,17 @@ public class CharacterMovement : MonoBehaviour {
   public float distanceSides;
   
   [Header("Component")]
-  public Rigidbody2D rb2d;
-  public BoxCollider2D bc2d;
+  public LayerMask groundLR;
+  public LayerMask wallLR;
 
-  // Update is called once per frame
+  private Rigidbody2D rb2d;
+  private BoxCollider2D bc2d;
+
+  void Start () {
+    rb2d = GetComponent<Rigidbody2D>();
+    bc2d = GetComponent<BoxCollider2D>();
+  }
+  
   void Update () {
     Vector2 velocity = new Vector2(
       Mathf.Clamp((Input.GetAxis("Horizontal") * speed * Time.deltaTime) + rb2d.velocity.x, -maxSpeed, maxSpeed), 

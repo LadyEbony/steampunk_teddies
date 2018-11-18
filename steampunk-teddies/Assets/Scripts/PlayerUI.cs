@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class PlayerUI : MonoBehaviour {
 
-  public PlayerManager Player;	
+  public PlayerManager Player { get {return PlayerManager.instance; }}	
 
   public Text Health;
   public Text GunName;
