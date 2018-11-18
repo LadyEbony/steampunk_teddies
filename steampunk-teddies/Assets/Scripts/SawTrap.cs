@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class SawTrap : MonoBehaviour {
 
+	private float spin = 450;
+
 	public void FixedUpdate() {
-		transform.eulerAngles += new Vector3(0, 0, 30);
+		transform.eulerAngles += new Vector3(0, 0, spin / 30);
 	}
   private void OnTriggerEnter2D(Collider2D collision) {
     var layer = collision.gameObject.layer;

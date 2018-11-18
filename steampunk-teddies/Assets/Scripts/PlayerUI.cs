@@ -14,7 +14,7 @@ public class PlayerUI : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		Health.text = Player.currentHealth.ToString();
+		Health.text = Player.currentHealth > 0 ? Player.currentHealth.ToString() : "DEAD";
 
     if (Player.gunInHand == null) {
       GunName.text = "FISTS";
