@@ -63,20 +63,22 @@ public class Enemy : MonoBehaviour {
 							} else {
 								//We don't move to exactly the edges of the range. Instead, we randomly approach it.
 								int timeLeft = 30 + r.Next(30);
+								float horizontal;
 								if(Mathf.Abs(displacement.x) < minPreferredRange) {
-									moveOrder = () => {
-										GetComponent<Rigidbody2D> ().velocity = new Vector2 (-Mathf.Sign(displacement.x) * speed, 0);	
-										if(--timeLeft < 1)
-											moveOrder = null;
-									};
-
+									horizontal = -Mathf.Sign(displacement.x) * speed;
 								} else if(Mathf.Abs(displacement.x) > maxPreferredRange) {
+									horizontal = Mathf.Sign(displacement.x) * speed;
+								} else {
+									horizontal = 0;
+								}
+								if(horizontal != 0) {
 									moveOrder = () => {
-										GetComponent<Rigidbody2D> ().velocity = new Vector2 (Mathf.Sign(displacement.x) * speed, 0);
+										GetComponent<Rigidbody2D> ().velocity = new Vector2 (horizontal, GetComponent<Rigidbody2D> ().velocity.y);
 										if(--timeLeft < 1)
 											moveOrder = null;
 									};
 								}
+
 							}
 						}
 					} else {
@@ -100,11 +102,13 @@ public class Enemy : MonoBehaviour {
 				order = () => {
 					timeLeft--;
 					if (timeLeft > 0) {
+						int horizontal;
 						if (right) {
-							GetComponent<Rigidbody2D> ().velocity = new Vector2 (2, 0);
+							horizontal = 2;
 						} else {
-							GetComponent<Rigidbody2D> ().velocity = new Vector2 (-2, 0);
+							horizontal = -2;
 						}
+						GetComponent<Rigidbody2D> ().velocity = new Vector2 (horizontal, GetComponent<Rigidbody2D> ().velocity.y);
 						UpdatePlayerCheck();
 					} else {
 						order = UpdateIdle;
