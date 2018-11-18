@@ -8,26 +8,23 @@ public class CharacterManager : MonoBehaviour {
   public Gun gunInHand;
 	
   public Transform hand;
-
+  
 	void Start () {
-    StartProcedure();
+		StartProcedure();
 	}
-
-  protected virtual void StartProcedure() {
-    currentHealth = maxhp;
-    if (gunInHand != null) { 
-      gunInHand.equipped = true;
-      gunInHand.friendly = this is PlayerManager ? true : false;
-    }
-  }
-
-  public void TakeDamage(int damage) {
-    Debug.LogFormat("Took {0} damage", damage);
-    currentHealth -= damage;
-    if (currentHealth <= 0)
-    {
-      Destroy(gameObject);
-    }
-  }
-	
+  
+	protected virtual void StartProcedure() {
+	    currentHealth = maxhp;
+	    if (gunInHand != null) { 
+        gunInHand.equipped = true;
+      }
+	}
+	public virtual void TakeDamage(int damage) {
+		Debug.LogFormat("Took {0} damage", damage);
+	    currentHealth -= damage;
+	    if (currentHealth <= 0)
+	    {
+	    	Destroy(gameObject);
+	    }
+	}
 }
