@@ -459,6 +459,7 @@ GameObject:
   - component: {fileID: 162149013}
   - component: {fileID: 162149012}
   - component: {fileID: 162149011}
+  - component: {fileID: 162149014}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -526,6 +527,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &162149014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 162149010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4418d428745558448a3863935463a9ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Speed: 20
 --- !u!1001 &292441045
 Prefab:
   m_ObjectHideFlags: 0
@@ -852,7 +865,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 692cfa9691c81f445a18525452023b6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 117964356}
   Health: {fileID: 83575006}
   GunName: {fileID: 1575532927}
   GunAmmo: {fileID: 1244171213}
