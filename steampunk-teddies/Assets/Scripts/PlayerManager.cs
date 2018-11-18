@@ -49,9 +49,9 @@ public class PlayerManager : CharacterManager {
 
 	protected override void StartProcedure() {
 		base.StartProcedure();
-		if(gunInHand != null) {
-			gunInHand.friendly = true;
-		}
+    gunInHand = GetComponentInChildren<Gun>();
+		gunInHand.friendly = true;
+    gunInHand.equipped = true;
 	}
 
 	public void FixedUpdate()  {

@@ -16,7 +16,7 @@ public class CharacterManager : MonoBehaviour {
   }
 
   public int maxhp;
-  protected int currentHealth;
+  public int currentHealth;
   public Gun gunInHand;
   public State state;
   public Transform hand;
