@@ -28,6 +28,7 @@ public class Melee : MonoBehaviour {
           )
         ), Vector3.forward);
       temp.SetVelocity();
+      temp.friendly = true;
     }
   }
 

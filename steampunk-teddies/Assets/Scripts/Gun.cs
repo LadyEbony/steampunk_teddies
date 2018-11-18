@@ -68,6 +68,7 @@ public class Gun : MonoBehaviour {
         if (MagazineCurrent > 0)
             SwitchState(GunState.FireratePause);
         else { 
+            Audio.PlayOneShot(ReloadSound);
             SwitchState(GunState.ReloadPause);
         }
       } else {

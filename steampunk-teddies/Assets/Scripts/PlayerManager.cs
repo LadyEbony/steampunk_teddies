@@ -17,12 +17,12 @@ public class PlayerManager : CharacterManager {
 
 
   private void Update() {
-    if (Dead) return;
-
     if (gunInHand != null) { 
       gunInHand.UpdateProcedure();
       if (Input.GetMouseButton(0))
         gunInHand.Fire();
+      if (Input.GetKey(KeyCode.R))
+        gunInHand.ReloadGun();
     }
      
     if (bat != null) { 
@@ -59,8 +59,6 @@ public class PlayerManager : CharacterManager {
 	}
 
 	public void FixedUpdate()  {
-    if (Dead) return;
-
 		if (invincibility-- > 0) {
 			GetComponent<SpriteRenderer> ().color = new Color (255, 255, 255, Mathf.Cos ((Mathf.Pow(invincibility, 2) / 3) * Mathf.PI));
 		}
