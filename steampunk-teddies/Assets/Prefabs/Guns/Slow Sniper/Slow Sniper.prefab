@@ -197,7 +197,7 @@ MonoBehaviour:
   friendly: 0
   equipped: 0
   StateDuration: 0
-  Name: Sniper
+  Name: Shotgun
   Damage: 3
   Firerate: 0.75
   Reload: 0.25

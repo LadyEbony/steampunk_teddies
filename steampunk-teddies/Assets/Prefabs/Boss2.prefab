@@ -130,7 +130,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manager: {fileID: 114571292218285668}
-  vision: 4
+  vision: 100
   bulletCheck: 0.5
   speed: 2
   minPreferredRange: 2
@@ -146,8 +146,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fbc5995c24fa2d45b74077203c9c6a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxhp: 3
-  currentHealth: 3
+  maxhp: 25
+  currentHealth: 25
   gunInHand: {fileID: 0}
   state: 0
   hand: {fileID: 4781192047930448}

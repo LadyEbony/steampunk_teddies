@@ -14,8 +14,6 @@ public class BossSpawner : MonoBehaviour {
         boss.SetActive(true);
         walls.SetActive(true);
         once = true;
-        Debug.Log("bitchboy");
-        Instantiate(boss, transform.position, Quaternion.identity);
 		gameObject.SetActive (false);
     }
 }
