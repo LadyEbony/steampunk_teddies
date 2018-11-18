@@ -6,6 +6,7 @@ public static class Global {
 
   public static LayerMask Player = 1 << 10;
   public static LayerMask Enemy = 1 << 11;
+  public static LayerMask Character = (1 << 10) + (1 << 11);
   public static LayerMask Environment = (1 << 8) + (1 << 13);
   public static LayerMask Wall = 1 << 13;
   public static LayerMask Ground = 1 << 8;
