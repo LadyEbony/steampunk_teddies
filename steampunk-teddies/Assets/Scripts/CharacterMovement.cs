@@ -34,9 +34,9 @@ public class CharacterMovement : MonoBehaviour {
       rb2d.velocity.y - gravity * Time.deltaTime
     );
 
-    var hitG = Physics2D.BoxCast(transform.position, bc2d.size, 0, Vector2.down, distanceGround, groundLR);
-    var hitL = Physics2D.BoxCast(transform.position, bc2d.size, 0, Vector2.left, distanceSides, wallLR);
-    var hitR = Physics2D.BoxCast(transform.position, bc2d.size, 0, Vector2.right, distanceSides, wallLR);
+    var hitG = Physics2D.BoxCast(transform.position, bc2d.size, 0, Vector2.down, distanceGround, Global.Ground);
+    var hitL = Physics2D.BoxCast(transform.position, bc2d.size, 0, Vector2.left, distanceSides, Global.Wall);
+    var hitR = Physics2D.BoxCast(transform.position, bc2d.size, 0, Vector2.right, distanceSides, Global.Wall);
     if ((hitG.collider != null || hitL.collider != null || hitR.collider != null )&& Input.GetKeyDown(KeyCode.Space)) {
       velocity.y = jumpForce;
 

@@ -15,26 +15,35 @@ public class CharacterManager : MonoBehaviour {
     Dead
   }
 
-  public int hp;
+  public int maxhp;
   protected int currentHealth;
   public Gun gunInHand;
   public State state;
+  public Transform hand;
 
   protected Animator animator;
   protected Rigidbody2D rb2D;
 
 	void Start () {
-    currentHealth = hp;
-
-    animator = GetComponent<Animator>();
-    rb2D = GetComponent<Rigidbody2D>();
+    StartProcedure();
+    currentHealth = maxhp;
 	}
 
   void Update () {
     
   }
 
-  public void TakeDamage(int damage) {
+  protected virtual void StartProcedure() {
+    animator = GetComponent<Animator>();
+    rb2D = GetComponent<Rigidbody2D>();
+	  currentHealth = maxhp;
+	    if (gunInHand != null) { 
+        gunInHand.equipped = true;
+      }
+	}
+
+  public virtual void TakeDamage(int damage) {
+    Debug.LogFormat("Took {0} damage", damage);
     currentHealth -= damage;
     if (currentHealth <= 0)
     {
