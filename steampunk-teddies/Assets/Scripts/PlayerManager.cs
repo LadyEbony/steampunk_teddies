@@ -31,6 +31,8 @@ public class PlayerManager : CharacterManager {
         bat.Attack();
     }
 
+    if (Dead) return;
+
     if (rb2D.velocity.x != 0)
       animator.SetFloat("Direction", rb2D.velocity.x);
     animator.SetFloat("Health", currentHealth);
