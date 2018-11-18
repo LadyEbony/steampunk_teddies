@@ -18,6 +18,25 @@ public class PlayerManager : CharacterManager {
       if (Input.GetKey(KeyCode.F))
         bat.Attack();
     }
+
+    if (rb2D.velocity.x != 0)
+      animator.SetFloat("Direction", rb2D.velocity.x);
+    animator.SetFloat("Health", currentHealth);
+
+    if (rb2D.velocity.y > 1) {
+      animator.Play("jump");
+    }
+    // else if (rb2D.velocity.y < -1) {
+    //   animator.Play("fall");
+    // }
+    else {
+      if (rb2D.velocity.x != 0) {
+        animator.Play("run");
+      }
+      else {
+        animator.Play("idle");
+      }
+    }
   }
 
   public void SwitchGun(Gun nearbyGun)
