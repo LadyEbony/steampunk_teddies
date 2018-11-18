@@ -7,6 +7,7 @@ public class Bullet : MonoBehaviour {
   public Rigidbody2D Rigidbody;
   public int Damage;
   public float Speed;
+  public float Dropoff;
 
   public bool friendly;
 
@@ -21,7 +22,14 @@ public class Bullet : MonoBehaviour {
     Destroy(gameObject, DestroyTime);
 	}
 
-  public void SetVelocity() {
+    private void Update()
+    {
+        var temp = Rigidbody.velocity;
+        temp.y -= Dropoff * Time.deltaTime;
+        Rigidbody.velocity = temp;
+    }
+
+    public void SetVelocity() {
     Rigidbody.velocity = transform.rotation * Vector2.right * Speed;
   }
 
