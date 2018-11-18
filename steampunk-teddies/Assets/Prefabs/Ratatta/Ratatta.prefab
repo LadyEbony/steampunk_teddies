@@ -200,7 +200,7 @@ MonoBehaviour:
   Name: Ratatta
   Damage: 3
   Firerate: 0.1
-  Reload: 0.25
+  Reload: 0.5
   BulletSpeed: 10
   MagazineSize: 25
   MagazineCurrent: 25
