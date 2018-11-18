@@ -7,7 +7,7 @@ public class PlayerManager : CharacterManager {
 	public Bat bat;
 	private int invincibility = 0;
 
-	public override void StartProcedure() {
+	protected override void StartProcedure() {
 		base.StartProcedure();
 		if(gunInHand != null) {
 			gunInHand.friendly = true;
