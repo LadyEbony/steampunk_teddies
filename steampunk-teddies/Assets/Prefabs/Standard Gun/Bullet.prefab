@@ -93,15 +93,12 @@ MonoBehaviour:
   Damage: 0
   Speed: 0
   DestroyTime: 2
-  EnemyLayerMask:
+  CharacterLayerMask:
     serializedVersion: 2
-    m_Bits: 2048
+    m_Bits: 3072
   EnvironmentLayerMask:
     serializedVersion: 2
-    m_Bits: 256
-  playerLayerMask:
-    serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8448
 --- !u!212 &212449786650399282
 SpriteRenderer:
   m_ObjectHideFlags: 1

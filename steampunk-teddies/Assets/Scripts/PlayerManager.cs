@@ -6,6 +6,9 @@ public class PlayerManager : CharacterManager {
 
   public Bat bat;
 
+  public Transform hand;
+
+
   private void Update() {
     if (gunInHand != null) { 
       gunInHand.UpdateProcedure();
