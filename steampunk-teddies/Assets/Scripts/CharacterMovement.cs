@@ -4,80 +4,43 @@ using UnityEngine;
 
 public class CharacterMovement : MonoBehaviour {
 
-    public float speed;
-    public float distance;
-    public float jumpForce;
-    public float wallForce;
-    public bool isFacingRight;
-    public LayerMask environmentLR;
+  [Header("Speed")]
+  public float speed;
+  public float maxSpeed;
+  public float jumpForce;
+  public float gravity;
 
-    private Rigidbody2D rb2d;
+  [Header("Jump Detection")]
+  public float distanceGround;
+  public float distanceSides;
+  
+  [Header("Component")]
+  public LayerMask groundLR;
+  public LayerMask wallLR;
 
-	// Use this for initialization
-	void Start () {
-        rb2d = GetComponent<Rigidbody2D>();
-	}
+  public Rigidbody2D rb2d;
+  public BoxCollider2D bc2d;
 
-    void Flip() //Flips character
-    {
-        Vector3 scale = transform.localScale;
-        scale.x *= -1;
-        transform.localScale = scale;
+  // Update is called once per frame
+  void Update () {
+    Vector2 velocity = new Vector2(
+      Mathf.Clamp((Input.GetAxis("Horizontal") * speed * Time.deltaTime) + rb2d.velocity.x, -maxSpeed, maxSpeed), 
+      rb2d.velocity.y - gravity * Time.deltaTime
+    );
+
+    var hitG = Physics2D.BoxCast(transform.position, bc2d.size, 0, Vector2.down, distanceGround, groundLR);
+    var hitL = Physics2D.BoxCast(transform.position, bc2d.size, 0, Vector2.left, distanceSides, wallLR);
+    var hitR = Physics2D.BoxCast(transform.position, bc2d.size, 0, Vector2.right, distanceSides, wallLR);
+    if ((hitG.collider != null || hitL.collider != null || hitR.collider != null )&& Input.GetKeyDown(KeyCode.Space)) {
+      velocity.y = jumpForce;
+
+      if (hitL.collider != null) {
+        velocity.x = maxSpeed;
+      } else if (hitR.collider != null) {
+        velocity.x = -maxSpeed;
+      }
     }
 
-    // Update is called once per frame
-    void FixedUpdate () {
-        float moveHorizontally = Input.GetAxis("Horizontal");
-
-        Vector2 movement = new Vector2(moveHorizontally, 0.0f) * speed;
-
-        movement.y = rb2d.velocity.y;
-
-        RaycastHit2D hit1 = Physics2D.Raycast(transform.position, Vector2.down, distance, environmentLR);
-
-        RaycastHit2D hit2 = Physics2D.Raycast(transform.position, Vector2.right, distance, environmentLR);
-
-        RaycastHit2D hit3 = Physics2D.Raycast(transform.position, Vector2.left, distance, environmentLR);
-
-        //Flips character with movement
-        if (Input.GetKeyDown("right") && isFacingRight)
-        {
-            Flip();
-            isFacingRight = false;
-        }
-        if (Input.GetKeyDown("left") && !isFacingRight)
-        {
-            Flip();
-            isFacingRight = true;
-        }
-
-        //Jump
-        if (hit1.collider != null && Input.GetKeyDown("space"))
-        {
-            movement.y = jumpForce;
-        }
-
-
-
-        //Wall Jump
-        if ((hit2.collider != null || hit3.collider != null) && Input.GetKeyDown("space"))
-        {
-            movement.y = jumpForce;
-            if (hit2.collider != null && isFacingRight)
-            {
-                //movement.x += -wallForce;
-                Flip();
-                isFacingRight = false;
-                
-            }
-            if (hit3.collider != null && !isFacingRight)
-            {
-                //movement.x += wallForce;
-                Flip();
-                isFacingRight = true;
-            }
-        }
-
-        rb2d.velocity = movement;
-    }
+    rb2d.velocity = velocity;
+  }
 }
