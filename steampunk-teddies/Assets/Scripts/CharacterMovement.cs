@@ -20,6 +20,9 @@ public class CharacterMovement : MonoBehaviour {
   private Rigidbody2D rb2d;
   private BoxCollider2D bc2d;
 
+  [Header("Audio")]
+  public AudioSource Audio;
+
   void Start () {
     rb2d = GetComponent<Rigidbody2D>();
     bc2d = GetComponent<BoxCollider2D>();
@@ -43,6 +46,11 @@ public class CharacterMovement : MonoBehaviour {
         velocity.x = -maxSpeed;
       }
     }
+
+    if ((!Mathf.Approximately(velocity.x, 0) || hitG.collider != null) && !Audio.isPlaying)
+      Audio.Play();
+    else if ((Mathf.Approximately(velocity.x, 0) || hitG.collider == null) && Audio.isPlaying )
+      Audio.Stop();
 
     rb2d.velocity = velocity;
   }
