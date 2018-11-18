@@ -7,6 +7,8 @@ public class PlayerManager : CharacterManager {
   public Bat bat;
   private int invincibility = 0;
 
+  public bool Dead = false;
+
   public static PlayerManager instance;
 
   private void Awake() {
@@ -15,6 +17,8 @@ public class PlayerManager : CharacterManager {
 
 
   private void Update() {
+    if (Dead) return;
+
     if (gunInHand != null) { 
       gunInHand.UpdateProcedure();
       if (Input.GetMouseButton(0))
@@ -55,6 +59,8 @@ public class PlayerManager : CharacterManager {
 	}
 
 	public void FixedUpdate()  {
+    if (Dead) return;
+
 		if (invincibility-- > 0) {
 			GetComponent<SpriteRenderer> ().color = new Color (255, 255, 255, Mathf.Cos ((Mathf.Pow(invincibility, 2) / 3) * Mathf.PI));
 		}
@@ -73,9 +79,20 @@ public class PlayerManager : CharacterManager {
   }
 
 	public override void TakeDamage(int damage) {
-		if (invincibility > 0)
+		if (Dead) return;
+
+    if (invincibility > 0)
 			return;
 		invincibility = 60;
-		base.TakeDamage (damage);
+		
+    currentHealth -= damage;
+    if (currentHealth <= 0)
+    {
+      animator.Play("Dead");
+      Dead = true;
+    }
+
+
 	}
+
 }

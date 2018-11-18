@@ -43,7 +43,7 @@ public class CharacterManager : MonoBehaviour {
 	}
 
   public virtual void TakeDamage(int damage) {
-    Debug.LogFormat("Took {0} damage", damage);
+    
     currentHealth -= damage;
     if (currentHealth <= 0)
     {
