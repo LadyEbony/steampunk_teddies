@@ -25,6 +25,7 @@ public class Enemy : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
+		gun.UpdateProcedure ();
 		order.Invoke ();
 	}
 		
@@ -40,15 +41,18 @@ public class Enemy : MonoBehaviour {
 
 					Vector2 displacement = player.transform.position - transform.position;
 					if (displacement.magnitude < vision) {
+						
 						//Check that there's no environment in our way (since it blocks our sight)
 						if (Physics2D.Raycast (transform.position, displacement, bulletCheck, environmentLayer).collider != null) {
-
+							return;
 						} else {
 							float fireAngle = Mathf.Atan2(displacement.y, displacement.x);
 
 							gun.transform.eulerAngles = new Vector3(0, 0, fireAngle * Mathf.Rad2Deg);
 
 							gun.Fire();
+
+							print("firing");
 
 							if(moveOrder != null) {
 								moveOrder();
@@ -74,7 +78,7 @@ public class Enemy : MonoBehaviour {
 					} else {
 						//Otherwise, we go back to being idle
 						order = UpdateIdle;
-
+						order();
 					}
 				};
 			}
@@ -100,8 +104,11 @@ public class Enemy : MonoBehaviour {
 						UpdatePlayerCheck();
 					} else {
 						order = UpdateIdle;
+						order();
 					}
+
 				};
+				order();
 			} else {
 				UpdatePlayerCheck();
 			}
