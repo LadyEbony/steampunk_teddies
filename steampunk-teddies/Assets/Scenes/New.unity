@@ -343,8 +343,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9321adc963de2054786f100410db7f51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxhp: 3
-  currentHealth: 3
+  maxhp: 5
+  currentHealth: 5
   gunInHand: {fileID: 1232733878}
   state: 0
   hand: {fileID: 1778889904}
@@ -2131,6 +2131,10 @@ Prefab:
         type: 2}
       propertyPath: vision
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 1224031352661140, guid: 746a5ccd1c8cfa44eae3540d015de009, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 746a5ccd1c8cfa44eae3540d015de009, type: 2}
