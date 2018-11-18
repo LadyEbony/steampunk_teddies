@@ -92,10 +92,14 @@ MonoBehaviour:
   Rigidbody: {fileID: 50974467187430580}
   Damage: 0
   Speed: 0
+  friendly: 0
   DestroyTime: 2
-  CharacterLayerMask:
+  PlayerLayerMask:
     serializedVersion: 2
-    m_Bits: 3072
+    m_Bits: 1024
+  EnemyLayerMask:
+    serializedVersion: 2
+    m_Bits: 2048
   EnvironmentLayerMask:
     serializedVersion: 2
     m_Bits: 8448

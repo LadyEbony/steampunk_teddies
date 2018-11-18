@@ -4,8 +4,7 @@ using UnityEngine;
 using System.Linq;
 using System;
 public class Enemy : MonoBehaviour {
-	public LayerMask playerLayer;
-	public LayerMask environmentLayer;
+  public CharacterManager manager;
 	public float vision = 20;
   public float bulletCheck = 0.5f;
 	System.Random r = new System.Random();
@@ -14,24 +13,32 @@ public class Enemy : MonoBehaviour {
 	public float minPreferredRange = 5, maxPreferredRange = 10;
 
 
-	public Gun gun;
+	public Gun gun { get { return manager.gunInHand; } set { manager.gunInHand = value; } }
 
 	Action order;
 	// Use this for initialization
 	void Start () {
 		order = UpdateIdle;
+
+    gun = GunCache.instance.Get().GetComponent<Gun>();
     gun.equipped = true;
+    gun.transform.SetParent(manager.hand);
+    gun.transform.localPosition = Vector3.zero;
+    gun.transform.localRotation = Quaternion.identity;
 	}
-	
-	// Update is called once per frame
-	void FixedUpdate () {
-		gun.UpdateProcedure ();
+
+  private void Update() {
+    gun.UpdateProcedure ();
+  }
+
+  // Update is called once per frame
+  void FixedUpdate () {
 		order.Invoke ();
 	}
 		
 	void UpdateIdle() {
 		Action UpdatePlayerCheck = () => {
-			Collider2D playerCollider = Physics2D.OverlapCircle (transform.position, vision, playerLayer);
+			Collider2D playerCollider = Physics2D.OverlapCircle (transform.position, vision, Global.Player);
 			if (playerCollider != null) {
 				GameObject player = playerCollider.gameObject;
 
@@ -43,16 +50,14 @@ public class Enemy : MonoBehaviour {
 					if (displacement.magnitude < vision) {
 						
 						//Check that there's no environment in our way (since it blocks our sight)
-						if (Physics2D.Raycast (transform.position, displacement, bulletCheck, environmentLayer).collider != null) {
+						if (Physics2D.Raycast (transform.position, displacement, bulletCheck, Global.Environment).collider != null) {
 							return;
 						} else {
 							float fireAngle = Mathf.Atan2(displacement.y, displacement.x);
 
 							gun.transform.eulerAngles = new Vector3(0, 0, fireAngle * Mathf.Rad2Deg);
 
-							gun.Fire();
-
-							print("firing");
+							gun.Fire(true);
 
 							if(moveOrder != null) {
 								moveOrder();
@@ -115,4 +120,9 @@ public class Enemy : MonoBehaviour {
 		};
 
 	}
+
+  private void OnDestroy() {
+    gun.transform.SetParent(null, true);
+    gun.equipped = false;
+  }
 }

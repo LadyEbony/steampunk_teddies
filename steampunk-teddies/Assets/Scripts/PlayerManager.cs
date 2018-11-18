@@ -5,24 +5,27 @@ using UnityEngine;
 public class PlayerManager : CharacterManager {
 
 	public Bat bat;
-
-	public Transform hand;
-
 	private int invincibility = 0;
 
+	public override void StartProcedure() {
+		base.StartProcedure();
+		if(gunInHand != null) {
+			gunInHand.friendly = true;
+		}
+	}
 	private void Update() {
 		if (gunInHand != null) { 
-			gunInHand.UpdateProcedure();
-		if (Input.GetMouseButton(0))
-			gunInHand.Fire();
-		if (Input.GetKeyDown(KeyCode.R))
-			gunInHand.ReloadGun();
+				gunInHand.UpdateProcedure();
+			if (Input.GetMouseButton(0))
+				gunInHand.Fire();
+			if (Input.GetKeyDown(KeyCode.R))
+				gunInHand.ReloadGun();
 		}
 	     
 	    if (bat != null) { 
-			bat.UpdateProcedure();
-			if (Input.GetKey(KeyCode.F))
-			bat.Attack();
+				bat.UpdateProcedure();
+				if (Input.GetKey(KeyCode.F))
+					bat.Attack();
 	    }
 	}
 	public void FixedUpdate()  {
@@ -34,7 +37,10 @@ public class PlayerManager : CharacterManager {
   {
     if (gunInHand != null)
       Destroy(gunInHand.gameObject);
+
     gunInHand = nearbyGun;
+    gunInHand.friendly = true;
+    gunInHand.Audio.PlayOneShot(gunInHand.PickupSound);
     gunInHand.transform.SetParent(hand);
     gunInHand.transform.localPosition = Vector3.zero;
     gunInHand.transform.localRotation = Quaternion.identity;

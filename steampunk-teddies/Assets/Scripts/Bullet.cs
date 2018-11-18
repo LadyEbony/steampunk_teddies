@@ -8,9 +8,9 @@ public class Bullet : MonoBehaviour {
   public int Damage;
   public float Speed;
 
+  public bool friendly;
+
   public float DestroyTime;
-  public LayerMask CharacterLayerMask;
-  public LayerMask EnvironmentLayerMask;
 
 	// Use this for initialization
 	void Start () {
@@ -24,10 +24,10 @@ public class Bullet : MonoBehaviour {
 
   private void OnTriggerEnter2D(Collider2D collision) {
     var layer = collision.gameObject.layer;
-    if (Global.IsInLayerMask(layer, CharacterLayerMask)) {
+    if ((Global.IsInLayerMask(layer, Global.Player) && !friendly) || (Global.IsInLayerMask(layer, Global.Enemy) && friendly)) {
       collision.gameObject.GetComponent<CharacterManager>().TakeDamage(Damage);
       Destroy(gameObject);
-    } else if (Global.IsInLayerMask(layer, EnvironmentLayerMask)) {
+    } else if (Global.IsInLayerMask(layer, Global.Environment)) {
       Destroy(gameObject);
     }
   }
