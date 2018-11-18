@@ -11,6 +11,7 @@ public class Gun : MonoBehaviour {
   public float StateDuration = 0.0f;
 
   [Header("Gun Stats")]
+  public string Name = "Gun";
   public int Damage = 1;
   public float Firerate = 0.025f;
   public float Reload = 1.0f;
