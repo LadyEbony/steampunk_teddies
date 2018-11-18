@@ -7,6 +7,13 @@ public class PlayerManager : CharacterManager {
   public Bat bat;
   private int invincibility = 0;
 
+  public static PlayerManager instance;
+
+  private void Awake() {
+    instance = this;
+  }
+
+
   private void Update() {
     if (gunInHand != null) { 
       gunInHand.UpdateProcedure();
@@ -46,21 +53,7 @@ public class PlayerManager : CharacterManager {
 			gunInHand.friendly = true;
 		}
 	}
-	private void Update() {
-		if (gunInHand != null) { 
-				gunInHand.UpdateProcedure();
-			if (Input.GetMouseButton(0))
-				gunInHand.Fire();
-			if (Input.GetKeyDown(KeyCode.R))
-				gunInHand.ReloadGun();
-		}
-	     
-	    if (bat != null) { 
-				bat.UpdateProcedure();
-				if (Input.GetKey(KeyCode.F))
-					bat.Attack();
-	    }
-	}
+
 	public void FixedUpdate()  {
 		if (invincibility-- > 0) {
 			GetComponent<SpriteRenderer> ().color = new Color (255, 255, 255, Mathf.Cos ((Mathf.Pow(invincibility, 2) / 3) * Mathf.PI));

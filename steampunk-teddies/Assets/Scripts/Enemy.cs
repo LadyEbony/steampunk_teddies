@@ -12,7 +12,6 @@ public class Enemy : MonoBehaviour {
 	public float speed = 2;
 	public float minPreferredRange = 5, maxPreferredRange = 10;
 
-
 	public Gun gun { get { return manager.gunInHand; } set { manager.gunInHand = value; } }
 
 	Action order;
