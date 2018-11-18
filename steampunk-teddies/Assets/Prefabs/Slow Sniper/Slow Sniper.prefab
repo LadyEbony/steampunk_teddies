@@ -197,6 +197,7 @@ MonoBehaviour:
   friendly: 0
   equipped: 0
   StateDuration: 0
+  Name: Sniper
   Damage: 3
   Firerate: 0.75
   Reload: 0.25
@@ -209,9 +210,6 @@ MonoBehaviour:
   ReloadSound: {fileID: 8300000, guid: c4501bfa3b7a82349bc98efc033c1b88, type: 3}
   Bullet: {fileID: 1650053074972646, guid: 9b3845c4f5d08c44a83d23327b16752e, type: 2}
   BulletTransform: {fileID: 4093824720375922}
-  playerLayerMask:
-    serializedVersion: 2
-    m_Bits: 1024
   GunPrefab: {fileID: 1650053074972646, guid: 1ae58d66d32a8c343843ab167815e443, type: 2}
 --- !u!212 &212367554961412026
 SpriteRenderer:

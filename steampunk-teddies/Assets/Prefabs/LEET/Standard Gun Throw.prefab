@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 50974467187430580}
   - component: {fileID: 58029221175414168}
   m_Layer: 9
-  m_Name: Gun Bullet
+  m_Name: Standard Gun Throw
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -92,14 +92,15 @@ MonoBehaviour:
   Rigidbody: {fileID: 50974467187430580}
   Damage: 0
   Speed: 0
+  Dropoff: 0
   friendly: 0
   DestroyTime: 2
   PlayerLayerMask:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 0
   EnemyLayerMask:
     serializedVersion: 2
-    m_Bits: 2048
+    m_Bits: 0
   EnvironmentLayerMask:
     serializedVersion: 2
     m_Bits: 8448

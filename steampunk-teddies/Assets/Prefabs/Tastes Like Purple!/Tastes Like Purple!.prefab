@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 58791824075625314}
   - component: {fileID: 82192848682798874}
   m_Layer: 0
-  m_Name: Gun
+  m_Name: Tastes Like Purple!
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -197,22 +197,20 @@ MonoBehaviour:
   friendly: 0
   equipped: 0
   StateDuration: 0
-  Damage: 3
-  Firerate: 0.1
+  Name: Tastes Like Purple!
+  Damage: 1
+  Firerate: 0.025
   Reload: 0.25
   BulletSpeed: 10
-  MagazineSize: 25
-  MagazineCurrent: 25
+  MagazineSize: 100
+  MagazineCurrent: 100
   Audio: {fileID: 82192848682798874}
   PickupSound: {fileID: 8300000, guid: 3f0e62bd2b354624089af8640409bec9, type: 3}
   FireSound: {fileID: 8300000, guid: 5881a83f6d22df241ba61ac3e465c1fe, type: 3}
   ReloadSound: {fileID: 8300000, guid: c4501bfa3b7a82349bc98efc033c1b88, type: 3}
-  Bullet: {fileID: 1650053074972646, guid: 633faa584f790bc4785d64e0ca358d1e, type: 2}
+  Bullet: {fileID: 1650053074972646, guid: 7ad1f525f18e4204ca6e55e0aac5e56d, type: 2}
   BulletTransform: {fileID: 4093824720375922}
-  playerLayerMask:
-    serializedVersion: 2
-    m_Bits: 1024
-  GunPrefab: {fileID: 1650053074972646, guid: 73fce652e1e2ad145b03c2d43bcbd096, type: 2}
+  GunPrefab: {fileID: 1650053074972646, guid: 86f25f15e4dcf6a42841442cc55c7dc6, type: 2}
 --- !u!212 &212367554961412026
 SpriteRenderer:
   m_ObjectHideFlags: 1
