@@ -17,9 +17,6 @@ public class CharacterMovement : MonoBehaviour {
   public float distanceSides;
   
   [Header("Component")]
-  public LayerMask groundLR;
-  public LayerMask wallLR;
-
   private Rigidbody2D rb2d;
   private BoxCollider2D bc2d;
 
