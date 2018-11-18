@@ -53,7 +53,7 @@ public class Gun : MonoBehaviour {
     StateDuration += Time.deltaTime;
   }
 
-  public void Fire() {
+  public void Fire(bool Enemy = false) {
     if (State == GunState.Standby) {
       var temp = Instantiate(Bullet, BulletTransform.position, BulletTransform.rotation).GetComponent<Bullet>();
       temp.friendly = friendly;
@@ -62,11 +62,17 @@ public class Gun : MonoBehaviour {
 
       Audio.PlayOneShot(FireSound);
 
-      MagazineCurrent--;
-      if (MagazineCurrent > 0)
-          SwitchState(GunState.FireratePause);
-      else { 
-          SwitchState(GunState.ReloadPause);
+      if (!Enemy) {
+        MagazineCurrent--;
+        if (MagazineCurrent > 0)
+            SwitchState(GunState.FireratePause);
+        else { 
+            SwitchState(GunState.ReloadPause);
+        }
+      } else {
+        SwitchState(GunState.FireratePause);
+        StateDuration = -Firerate * 10;
+        temp.Speed /= 3;
       }
     }
   }

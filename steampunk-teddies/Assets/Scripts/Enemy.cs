@@ -4,6 +4,7 @@ using UnityEngine;
 using System.Linq;
 using System;
 public class Enemy : MonoBehaviour {
+  public CharacterManager manager;
 	public float vision = 20;
   public float bulletCheck = 0.5f;
 	System.Random r = new System.Random();
@@ -12,13 +13,18 @@ public class Enemy : MonoBehaviour {
 	public float minPreferredRange = 5, maxPreferredRange = 10;
 
 
-	public Gun gun;
+	public Gun gun { get { return manager.gunInHand; } set { manager.gunInHand = value; } }
 
 	Action order;
 	// Use this for initialization
 	void Start () {
 		order = UpdateIdle;
+
+    gun = GunCache.instance.Get().GetComponent<Gun>();
     gun.equipped = true;
+    gun.transform.SetParent(manager.hand);
+    gun.transform.localPosition = Vector3.zero;
+    gun.transform.localRotation = Quaternion.identity;
 	}
 
   private void Update() {
@@ -51,9 +57,7 @@ public class Enemy : MonoBehaviour {
 
 							gun.transform.eulerAngles = new Vector3(0, 0, fireAngle * Mathf.Rad2Deg);
 
-							gun.Fire();
-
-							print("firing");
+							gun.Fire(true);
 
 							if(moveOrder != null) {
 								moveOrder();
@@ -116,4 +120,9 @@ public class Enemy : MonoBehaviour {
 		};
 
 	}
+
+  private void OnDestroy() {
+    gun.transform.SetParent(null, true);
+    gun.equipped = false;
+  }
 }

@@ -7,14 +7,18 @@ public class CharacterManager : MonoBehaviour {
   public int currentHealth;
   public Gun gunInHand;
 	
+  public Transform hand;
+
 	void Start () {
     StartProcedure();
 	}
 
   protected virtual void StartProcedure() {
     currentHealth = maxhp;
-    gunInHand.equipped = true;
-    gunInHand.friendly = this is PlayerManager ? true : false;
+    if (gunInHand != null) { 
+      gunInHand.equipped = true;
+      gunInHand.friendly = this is PlayerManager ? true : false;
+    }
   }
 
   public void TakeDamage(int damage) {
