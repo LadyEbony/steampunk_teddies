@@ -11,6 +11,8 @@ public class PlayerManager : CharacterManager {
       gunInHand.UpdateProcedure();
       if (Input.GetMouseButton(0))
         gunInHand.Fire();
+      if (Input.GetKeyDown(KeyCode.R))
+        gunInHand.ReloadGun();
     }
      
     if (bat != null) { 
@@ -22,8 +24,11 @@ public class PlayerManager : CharacterManager {
 
   public void SwitchGun(Gun nearbyGun)
   {
+    if (gunInHand != null)
       Destroy(gunInHand.gameObject);
-      gunInHand = nearbyGun;
-      gunInHand.transform.SetParent(transform);
+    gunInHand = nearbyGun;
+    gunInHand.transform.SetParent(hand);
+    gunInHand.transform.localPosition = Vector3.zero;
+    gunInHand.transform.localRotation = Quaternion.identity;
   }
 }

@@ -6,10 +6,17 @@ public class CharacterManager : MonoBehaviour {
   public int hp;
   private int currentHealth;
   public Gun gunInHand;
-	// Use this for initialization
+	
+  public Transform hand;
+
 	void Start () {
-    currentHealth = hp;
+    StartProcedure();
 	}
+
+  protected virtual void StartProcedure() {
+    currentHealth = hp;
+    gunInHand.equipped = true;
+  }
 
   public void TakeDamage(int damage) {
     currentHealth -= damage;

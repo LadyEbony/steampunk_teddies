@@ -36,6 +36,7 @@ GameObject:
   - component: {fileID: 4210514752096828}
   - component: {fileID: 114137508657190458}
   - component: {fileID: 212367554961412026}
+  - component: {fileID: 58791824075625314}
   m_Layer: 0
   m_Name: Gun
   m_TagString: Untagged
@@ -70,6 +71,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &58791824075625314
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1916819759879752}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.08
 --- !u!114 &114137508657190458
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -86,7 +102,7 @@ MonoBehaviour:
   StateDuration: 0
   Damage: 1
   Firerate: 0.1
-  Reload: 1
+  Reload: 0.25
   BulletSpeed: 10
   MagazineSize: 10
   MagazineCurrent: 10
@@ -95,6 +111,7 @@ MonoBehaviour:
   playerLayerMask:
     serializedVersion: 2
     m_Bits: 1024
+  GunPrefab: {fileID: 1650053074972646, guid: 66289fde335cf344bacf491a0ec7dcfd, type: 2}
 --- !u!212 &212367554961412026
 SpriteRenderer:
   m_ObjectHideFlags: 1
