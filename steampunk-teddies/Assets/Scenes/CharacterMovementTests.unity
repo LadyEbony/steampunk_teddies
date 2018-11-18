@@ -488,6 +488,27 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114137508657190458, guid: 0bc418ee279f6ef4b84c4df7da6f1cf6,
+        type: 2}
+      propertyPath: Firerate
+      value: 0.001
+      objectReference: {fileID: 0}
+    - target: {fileID: 114137508657190458, guid: 0bc418ee279f6ef4b84c4df7da6f1cf6,
+        type: 2}
+      propertyPath: Reload
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 114137508657190458, guid: 0bc418ee279f6ef4b84c4df7da6f1cf6,
+        type: 2}
+      propertyPath: GunPrefab
+      value: 
+      objectReference: {fileID: 1916819759879752, guid: 0bc418ee279f6ef4b84c4df7da6f1cf6,
+        type: 2}
+    - target: {fileID: 114137508657190458, guid: 0bc418ee279f6ef4b84c4df7da6f1cf6,
+        type: 2}
+      propertyPath: GunTransform
+      value: 
+      objectReference: {fileID: 1000062350}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0bc418ee279f6ef4b84c4df7da6f1cf6, type: 2}
   m_IsPrefabAsset: 0
@@ -502,6 +523,11 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 292441045}
   m_Script: {fileID: 11500000, guid: 4313daeaaa72f244c84f53ca08f4f1b9, type: 3}
+--- !u!4 &1000062350 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4093824720375922, guid: 0bc418ee279f6ef4b84c4df7da6f1cf6,
+    type: 2}
+  m_PrefabInternal: {fileID: 292441045}
 --- !u!1 &1045122075
 GameObject:
   m_ObjectHideFlags: 0

@@ -22,6 +22,9 @@ public class Gun : MonoBehaviour {
   public GameObject Bullet;
   public Transform BulletTransform;
   public LayerMask playerLayerMask;
+
+    [Header("Gun Throw Object")]
+    public GameObject GunPrefab;
     
 
   public void UpdateProcedure() {
@@ -37,10 +40,19 @@ public class Gun : MonoBehaviour {
 
       case GunState.ReloadPause:
         if (StateDuration >= Reload) {
-          MagazineCurrent = MagazineSize;
-          SwitchState(GunState.Standby, -Reload);
-        }
-        break;
+                    //MagazineCurrent = MagazineSize;
+                    //SwitchState(GunState.Standby, -Reload);
+                    MagazineCurrent = 0;
+                    SwitchState(GunState.FireratePause, 0);
+                    var temp = Instantiate(GunPrefab, BulletTransform.position, BulletTransform.rotation).GetComponent<Bullet>();
+                    temp.Damage = Damage;
+                    temp.Speed = BulletSpeed / 2;
+                    Destroy(this.gameObject);
+                    
+
+
+                }
+                break;
     }
     StateDuration += Time.deltaTime;
   }
@@ -52,10 +64,12 @@ public class Gun : MonoBehaviour {
       temp.Speed = BulletSpeed;
 
       MagazineCurrent--;
-      if (MagazineCurrent > 0)
-        SwitchState(GunState.FireratePause);
-      else
-        SwitchState(GunState.ReloadPause);
+            if (MagazineCurrent > 0)
+                SwitchState(GunState.FireratePause);
+            else
+                SwitchState(GunState.ReloadPause);
+                
+
     }
   }
 
